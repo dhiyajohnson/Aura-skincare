@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Skincare Guide — How to Use Each Serum</title>
+<meta name="description" content="Aura interactive skincare guide by Dhiya Johnson. Learn how to use Vitamin C, Niacinamide, Retinol and Salicylic Acid serums.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #0d0a09;
+    --bg2:     #130f0d;
+    --surface: #1c1410;
+    --sur2:    #241a14;
+    --gold:    #c9956a;
+    --gold-lt: #e8b992;
+    --sage:    #7a9e7e;
+    --sage-lt: #a3c4a7;
+    --cream:   #f2ece4;
+    --muted:   #9a8a7a;
+    --vitc:    #e8934a;
+    --niac:    #c9956a;
+    --retinol: #b5785a;
+    --salic:   #7a9e7e;
+  }
+
+  /* ── RESET ── */
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'DM Sans', sans-serif;
+    background:var(--bg);
+    color:var(--cream);
+    overflow-x:hidden;
+    cursor:none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor {
+    position:fixed; width:8px; height:8px;
+    background:var(--gold); border-radius:50%;
+    pointer-events:none; z-index:9999;
+    transform:translate(-50%,-50%);
+    transition:width 0.3s, height 0.3s;
+  }
+  .cursor-ring {
+    position:fixed; width:36px; height:36px;
+    border:1px solid rgba(201,149,106,0.5); border-radius:50%;
+    pointer-events:none; z-index:9998;
+    transform:translate(-50%,-50%);
+    transition:all 0.15s ease;
+  }
+  .cursor-ring.active {
+    width:56px; height:56px;
+    border-color:var(--gold);
+    background:rgba(201,149,106,0.05);
+  }
+
+  /* ── GRAIN ── */
+  body::before {
+    content:''; position:fixed; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:8000; opacity:0.5;
+  }
+
+  /* ── PARTICLES ── */
+  .particles { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .particle  { position:absolute; width:2px; height:2px; background:var(--gold); border-radius:50%; opacity:0; animation:rise linear infinite; }
+  @keyframes rise { 0%{opacity:0;transform:translateY(100vh) scale(0)} 10%{opacity:0.3} 90%{opacity:0.06} 100%{opacity:0;transform:translateY(-5vh) scale(1)} }
+
+  /* ── NAV ── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 52px;
+    background:rgba(13,10,9,0.82);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(201,149,106,0.12);
+  }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:var(--gold-lt); letter-spacing:4px; text-transform:uppercase; text-decoration:none; }
+  .nav-logo em { font-style:italic; color:var(--sage-lt); font-weight:300; }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:500; transition:color 0.3s; }
+  .nav-links a:hover { color:var(--gold-lt); }
+  .nav-back { padding:10px 24px; border:1px solid rgba(201,149,106,0.4); color:var(--gold); text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:500; transition:all 0.3s; }
+  .nav-back:hover { background:rgba(201,149,106,0.08); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height:100vh; display:flex; align-items:center;
+    padding:130px 52px 80px; position:relative; overflow:hidden;
+  }
+  .hero-glow {
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 70% 60% at 65% 50%, rgba(201,149,106,0.09) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 35% at 10% 85%, rgba(122,158,126,0.07) 0%, transparent 55%);
+  }
+  .hero-orb {
+    position:absolute; right:-80px; top:50%; transform:translateY(-50%);
+    width:560px; height:560px; border-radius:50%;
+    background:radial-gradient(circle,rgba(201,149,106,0.10) 0%,rgba(201,149,106,0.02) 40%,transparent 70%);
+    animation:breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe { 0%,100%{transform:translateY(-50%) scale(1);opacity:0.7} 50%{transform:translateY(-50%) scale(1.08);opacity:1} }
+
+  .hero-split {
+    display:grid; grid-template-columns:1fr 1fr; gap:64px;
+    align-items:center; position:relative; z-index:2;
+    max-width:1160px; width:100%;
+  }
+  .hero-eyebrow {
+    font-size:11px; letter-spacing:4px; text-transform:uppercase;
+    color:var(--sage-lt); margin-bottom:20px;
+    display:flex; align-items:center; gap:14px;
+    animation:fadeUp 0.8s ease both;
+  }
+  .hero-eyebrow::before { content:''; width:36px; height:1px; background:var(--sage); }
+  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(54px,7vw,88px); font-weight:300; line-height:0.95; margin-bottom:14px; color:var(--cream); animation:fadeUp 0.8s 0.1s ease both; }
+  .hero-title em { font-style:italic; color:var(--gold-lt); display:block; }
+  .hero-tagline { font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; color:var(--muted); margin-bottom:22px; letter-spacing:1px; animation:fadeUp 0.8s 0.2s ease both; }
+  .hero-desc { font-size:14px; color:var(--muted); line-height:1.8; max-width:420px; margin-bottom:36px; animation:fadeUp 0.8s 0.25s ease both; }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; animation:fadeUp 0.8s 0.3s ease both; }
+  .btn-gold { padding:16px 44px; background:linear-gradient(135deg,var(--gold),var(--gold-lt)); color:var(--bg); text-decoration:none; font-size:12px; letter-spacing:2.5px; text-transform:uppercase; font-weight:500; transition:all 0.3s; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; }
+  .btn-gold:hover { transform:translateY(-2px); box-shadow:0 20px 40px rgba(201,149,106,0.25); }
+  .btn-ghost { padding:16px 44px; border:1px solid rgba(201,149,106,0.35); color:var(--gold-lt); text-decoration:none; font-size:12px; letter-spacing:2.5px; text-transform:uppercase; font-weight:500; transition:all 0.3s; }
+  .btn-ghost:hover { border-color:var(--gold); background:rgba(201,149,106,0.06); }
+  .hero-stats { display:flex; gap:40px; margin-top:36px; animation:fadeUp 0.8s 0.35s ease both; }
+  .h-stat-num { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--gold-lt); line-height:1; }
+  .h-stat-lbl { font-size:10px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+  .hero-img { position:relative; animation:fadeUp 0.8s 0.2s ease both; }
+  .hero-img img { width:100%; height:auto; display:block; position:relative; z-index:2; }
+  .hero-img-glow { position:absolute; inset:-24px; background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(201,149,106,0.12) 0%,transparent 70%); z-index:1; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTIONS ── */
+  .section { padding:90px 52px; position:relative; }
+  .section-dark { background:var(--bg2); }
+  .sec-head { text-align:center; margin-bottom:60px; }
+  .sec-tag   { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--sage-lt); margin-bottom:14px; display:block; }
+  .sec-title { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,5vw,56px); font-weight:300; color:var(--cream); line-height:1.1; }
+  .sec-title em { color:var(--gold-lt); font-style:italic; }
+  .sec-desc  { margin-top:14px; font-size:14px; color:var(--muted); max-width:440px; margin-left:auto; margin-right:auto; line-height:1.7; }
+
+  /* ── PRODUCTS GRID ── */
+  .products-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; max-width:1200px; margin:0 auto; }
+  .product-card {
+    background:var(--surface); position:relative; overflow:hidden;
+    cursor:pointer; transition:transform 0.5s cubic-bezier(0.23,1,0.32,1);
+  }
+  .product-card:hover { transform:translateY(-8px); box-shadow:0 40px 60px rgba(0,0,0,0.45); }
+  .product-card::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity 0.5s; z-index:1; }
+  .product-card[data-p="vitc"]::before    { background:linear-gradient(180deg,rgba(232,147,74,0.12) 0%,transparent 55%); }
+  .product-card[data-p="niac"]::before    { background:linear-gradient(180deg,rgba(201,149,106,0.12) 0%,transparent 55%); }
+  .product-card[data-p="salic"]::before   { background:linear-gradient(180deg,rgba(122,158,126,0.14) 0%,transparent 55%); }
+  .product-card[data-p="retinol"]::before { background:linear-gradient(180deg,rgba(181,120,90,0.12) 0%,transparent 55%); }
+  .product-card:hover::before { opacity:1; }
+  .product-img { height:280px; overflow:hidden; background:var(--bg2); position:relative; }
+  .product-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.6s ease; }
+  .product-card:hover .product-img img { transform:scale(1.06); }
+  .product-img-fade { position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,var(--surface) 100%); }
+  .product-body { padding:22px 22px 26px; position:relative; z-index:2; }
+  .p-num  { font-size:10px; color:var(--muted); letter-spacing:3px; margin-bottom:6px; }
+  .p-name { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:400; color:var(--cream); margin-bottom:4px; line-height:1.2; }
+  .p-conc { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:500; margin-bottom:10px; }
+  .product-card[data-p="vitc"]    .p-conc { color:var(--vitc); }
+  .product-card[data-p="niac"]    .p-conc { color:var(--niac); }
+  .product-card[data-p="salic"]   .p-conc { color:var(--salic); }
+  .product-card[data-p="retinol"] .p-conc { color:var(--retinol); }
+  .p-desc { font-size:12px; color:var(--muted); line-height:1.65; margin-bottom:14px; }
+  .p-bottom { display:flex; align-items:center; justify-content:space-between; }
+  .p-price { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--gold-lt); }
+  .p-size  { font-size:10px; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; }
+  .p-btn {
+    font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:500;
+    padding:8px 16px; border:1px solid; background:transparent;
+    cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.3s;
+  }
+  .product-card[data-p="vitc"]    .p-btn { color:var(--vitc);    border-color:rgba(232,147,74,0.35); }
+  .product-card[data-p="niac"]    .p-btn { color:var(--niac);    border-color:rgba(201,149,106,0.35); }
+  .product-card[data-p="salic"]   .p-btn { color:var(--salic);   border-color:rgba(122,158,126,0.35); }
+  .product-card[data-p="retinol"] .p-btn { color:var(--retinol); border-color:rgba(181,120,90,0.35); }
+  .product-card:hover .p-btn { background:rgba(201,149,106,0.06); }
+
+  /* ── FEATURED PRODUCT ── */
+  .featured-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; max-width:1100px; margin:0 auto; }
+  .feat-img { position:relative; }
+  .feat-img img { width:100%; height:auto; display:block; }
+  .feat-img-glow { position:absolute; inset:-30px; background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(232,147,74,0.10) 0%,transparent 70%); z-index:-1; }
+  .feat-tag { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--vitc); margin-bottom:14px; display:flex; align-items:center; gap:12px; }
+  .feat-tag::before { content:''; width:28px; height:1px; background:var(--vitc); }
+  .feat-title { font-family:'Cormorant Garamond',serif; font-size:50px; font-weight:300; color:var(--cream); line-height:1; margin-bottom:8px; }
+  .feat-conc  { font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; color:var(--muted); margin-bottom:20px; }
+  .feat-desc  { font-size:14px; color:var(--muted); line-height:1.8; margin-bottom:28px; }
+  .feat-perks { display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
+  .feat-perk  { display:flex; align-items:center; gap:12px; font-size:13px; color:var(--cream); }
+  .feat-dot   { width:5px; height:5px; border-radius:50%; background:var(--vitc); flex-shrink:0; }
+  .feat-price-row { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
+  .feat-price { font-family:'Cormorant Garamond',serif; font-size:40px; color:var(--gold-lt); }
+  .feat-size  { padding:5px 14px; border:1px solid rgba(201,149,106,0.3); font-size:11px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; }
+
+  /* ── SHOWCASE STRIPS ── */
+  .showcase { }
+  .showcase-row { display:grid; grid-template-columns:1fr 1fr; min-height:460px; }
+  .showcase-row:nth-child(even) .sc-img     { order:2; }
+  .showcase-row:nth-child(even) .sc-content { order:1; }
+  .sc-img { overflow:hidden; position:relative; }
+  .sc-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.8s ease; }
+  .showcase-row:hover .sc-img img { transform:scale(1.04); }
+  .sc-content { background:var(--surface); padding:64px 56px; display:flex; flex-direction:column; justify-content:center; }
+  .sc-big-num { font-family:'Cormorant Garamond',serif; font-size:72px; font-weight:300; opacity:0.05; line-height:1; margin-bottom:-16px; }
+  .sc-badge { font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:500; margin-bottom:12px; }
+  .showcase-row[data-sc="niac"]    .sc-badge { color:var(--niac); }
+  .showcase-row[data-sc="salic"]   .sc-badge { color:var(--salic); }
+  .showcase-row[data-sc="retinol"] .sc-badge { color:var(--retinol); }
+  .sc-name  { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:300; color:var(--cream); line-height:1; margin-bottom:6px; }
+  .sc-conc  { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; color:var(--muted); margin-bottom:18px; }
+  .sc-desc  { font-size:14px; color:var(--muted); line-height:1.8; margin-bottom:24px; }
+  .sc-perks { display:flex; flex-direction:column; gap:9px; margin-bottom:28px; }
+  .sc-perk  { display:flex; align-items:center; gap:11px; font-size:12px; color:var(--cream); }
+  .sc-dot   { width:4px; height:4px; border-radius:50%; flex-shrink:0; }
+  .showcase-row[data-sc="niac"]    .sc-dot { background:var(--niac); }
+  .showcase-row[data-sc="salic"]   .sc-dot { background:var(--salic); }
+  .showcase-row[data-sc="retinol"] .sc-dot { background:var(--retinol); }
+  .sc-price-row { display:flex; align-items:center; gap:16px; margin-bottom:22px; }
+  .sc-price { font-family:'Cormorant Garamond',serif; font-size:34px; color:var(--gold-lt); }
+  .sc-size  { font-size:10px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border:1px solid rgba(201,149,106,0.2); }
+  .sc-btn   { display:inline-flex; align-items:center; gap:10px; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:500; background:transparent; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; padding:0; transition:gap 0.3s; }
+  .sc-btn:hover { gap:18px; }
+  .showcase-row[data-sc="niac"]    .sc-btn { color:var(--niac); }
+  .showcase-row[data-sc="salic"]   .sc-btn { color:var(--salic); }
+  .showcase-row[data-sc="retinol"] .sc-btn { color:var(--retinol); }
+
+  /* ── GUIDE TABS ── */
+  .guide-tabs { display:flex; justify-content:center; border-bottom:1px solid rgba(201,149,106,0.1); margin-bottom:44px; overflow-x:auto; }
+  .g-tab { padding:14px 28px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); background:transparent; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:500; transition:color 0.3s; position:relative; white-space:nowrap; }
+  .g-tab::after { content:''; position:absolute; bottom:-1px; left:0; right:0; height:2px; background:var(--gold); transform:scaleX(0); transition:transform 0.3s; }
+  .g-tab.active { color:var(--gold); }
+  .g-tab.active::after { transform:scaleX(1); }
+  .guide-panel { display:none; max-width:900px; margin:0 auto; }
+  .guide-panel.active { display:grid; grid-template-columns:1fr 1fr; gap:18px; animation:fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .g-card { background:var(--surface); border:1px solid rgba(201,149,106,0.08); padding:26px; }
+  .g-card-lbl  { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+  .g-card-head { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--cream); margin-bottom:10px; }
+  .g-card-body { font-size:13px; color:var(--muted); line-height:1.7; }
+  .g-list { display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+  .g-item { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--muted); line-height:1.5; }
+  .g-dot  { width:4px; height:4px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+  .g-warn { background:rgba(201,80,80,0.05); border:1px solid rgba(201,80,80,0.2); padding:13px 15px; margin-top:10px; font-size:12px; color:#e07070; line-height:1.6; }
+  .g-tip  { background:rgba(122,158,126,0.05); border:1px solid rgba(122,158,126,0.2); padding:13px 15px; margin-top:10px; font-size:12px; color:var(--sage-lt); line-height:1.6; }
+
+  /* ── ROUTINE ── */
+  .routine-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; max-width:860px; margin:0 auto; }
+  .r-time { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:22px; display:flex; align-items:center; gap:14px; }
+  .r-time::after { content:''; flex:1; height:1px; background:rgba(201,149,106,0.2); }
+  .r-steps { display:flex; flex-direction:column; gap:10px; }
+  .r-step { display:flex; align-items:center; gap:12px; padding:13px 16px; background:var(--surface); border:1px solid rgba(201,149,106,0.08); transition:all 0.3s; }
+  .r-step:hover { border-color:rgba(201,149,106,0.25); background:var(--sur2); }
+  .r-num  { font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--muted); min-width:18px; }
+  .r-name { font-size:12px; color:var(--cream); flex:1; font-weight:500; }
+  .r-badge { font-size:10px; padding:3px 9px; letter-spacing:1px; font-weight:500; }
+  .b-vitc    { background:rgba(232,147,74,0.15);  color:var(--vitc); }
+  .b-niac    { background:rgba(201,149,106,0.15); color:var(--niac); }
+  .b-retinol { background:rgba(181,120,90,0.15);  color:var(--retinol); }
+  .b-salic   { background:rgba(122,158,126,0.15); color:var(--salic); }
+
+  /* ── COMPATIBILITY ── */
+  .compat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:800px; margin:0 auto; }
+  .compat-card { background:var(--surface); border:1px solid rgba(201,149,106,0.1); padding:24px; }
+  .compat-head { display:flex; align-items:center; gap:12px; margin-bottom:14px; font-size:13px; font-weight:500; color:var(--cream); }
+  .compat-dot  { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .dot-green  { background:var(--sage); }
+  .dot-yellow { background:#e8c06a; }
+  .dot-red    { background:#e07070; }
+  .compat-tags { display:flex; flex-wrap:wrap; gap:7px; }
+  .compat-tag  { font-size:11px; padding:4px 12px; color:var(--muted); background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); }
+
+  /* ── SKIN FINDER ── */
+  .concern-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:680px; margin:0 auto 32px; }
+  .c-btn { padding:18px 14px; background:var(--surface); border:1px solid rgba(201,149,106,0.1); color:var(--muted); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; cursor:pointer; transition:all 0.3s; text-align:center; }
+  .c-btn.active { border-color:var(--gold); background:rgba(201,149,106,0.08); color:var(--gold-lt); }
+  .c-btn:hover:not(.active) { border-color:rgba(201,149,106,0.3); color:var(--cream); }
+  .c-icon { font-size:20px; display:block; margin-bottom:6px; }
+  .finder-result { background:var(--surface); border:1px solid rgba(201,149,106,0.15); padding:32px; max-width:680px; margin:0 auto; opacity:0; transform:translateY(10px); transition:all 0.4s; }
+  .finder-result.show { opacity:1; transform:translateY(0); }
+  .fr-title   { font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--cream); margin-bottom:14px; }
+  .fr-serums  { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .fr-serum   { padding:7px 18px; font-size:12px; letter-spacing:1px; font-weight:500; border:1px solid; }
+  .fr-tip     { font-size:13px; color:var(--muted); line-height:1.7; }
+
+  /* ── FOUNDER SECTION ── */
+  .story-section { position:relative; overflow:hidden; }
+  .story-glow { position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(201,149,106,0.06) 0%,transparent 70%); }
+  .story-inner { position:relative; max-width:740px; margin:0 auto; text-align:center; }
+  .quote-sym  { font-family:'Cormorant Garamond',serif; font-size:100px; line-height:0.55; color:rgba(201,149,106,0.1); display:block; margin-bottom:22px; }
+  .quote-text { font-family:'Cormorant Garamond',serif; font-size:clamp(20px,3.2vw,30px); font-style:italic; font-weight:300; color:var(--cream); line-height:1.55; margin-bottom:32px; }
+  .quote-text em { color:var(--gold-lt); font-style:normal; }
+  .sig-bar  { width:48px; height:1px; background:rgba(201,149,106,0.35); margin:0 auto 10px; }
+  .sig-name { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold-lt); letter-spacing:3px; }
+  .sig-role { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.88);
+    backdrop-filter:blur(12px);
+    z-index:600; opacity:0; pointer-events:none;
+    transition:opacity 0.4s;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.open { opacity:1; pointer-events:all; }
+  .modal {
+    background:var(--surface); border:1px solid rgba(201,149,106,0.2);
+    max-width:900px; width:100%; max-height:92vh; overflow-y:auto;
+    transform:translateY(30px) scale(0.97);
+    transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
+    scrollbar-width:thin; scrollbar-color:rgba(201,149,106,0.3) transparent;
+  }
+  .modal-overlay.open .modal { transform:translateY(0) scale(1); }
+
+  .modal-banner { position:relative; height:240px; overflow:hidden; background:var(--bg2); }
+  .modal-banner img { width:100%; height:100%; object-fit:cover; display:block; }
+  .modal-banner-fade { position:absolute; inset:0; background:linear-gradient(180deg,transparent 25%,var(--surface) 100%); }
+  .modal-close { position:absolute; top:16px; right:16px; width:38px; height:38px; background:rgba(0,0,0,0.6); border:1px solid rgba(201,149,106,0.35); color:var(--gold); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s; font-family:serif; backdrop-filter:blur(8px); z-index:10; }
+  .modal-close:hover { background:rgba(201,149,106,0.2); }
+  .modal-banner-info { position:absolute; bottom:22px; left:36px; right:54px; }
+  .m-eyebrow { font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:500; margin-bottom:5px; }
+  .m-title   { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; color:var(--cream); line-height:1; }
+  .m-conc    { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; color:var(--muted); }
+
+  .modal-price-bar { display:flex; align-items:center; gap:18px; padding:18px 36px; background:var(--bg2); border-bottom:1px solid rgba(201,149,106,0.1); flex-wrap:wrap; }
+  .m-price { font-family:'Cormorant Garamond',serif; font-size:34px; color:var(--gold-lt); }
+  .m-size  { font-size:10px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border:1px solid rgba(201,149,106,0.2); }
+  .m-avail { font-size:11px; color:var(--sage-lt); margin-left:auto; display:flex; align-items:center; gap:7px; }
+  .avail-dot { width:5px; height:5px; border-radius:50%; background:var(--sage); animation:blink 2s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .modal-tabs { display:flex; padding:0 36px; border-bottom:1px solid rgba(201,149,106,0.1); overflow-x:auto; }
+  .m-tab { padding:14px 20px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); background:transparent; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:500; transition:color 0.3s; position:relative; white-space:nowrap; }
+  .m-tab::after { content:''; position:absolute; bottom:-1px; left:0; right:0; height:2px; background:var(--gold); transform:scaleX(0); transition:transform 0.3s; }
+  .m-tab.active { color:var(--gold); }
+  .m-tab.active::after { transform:scaleX(1); }
+  .modal-body { padding:32px 36px 44px; }
+  .m-panel { display:none; animation:fadeIn 0.3s ease; }
+  .m-panel.active { display:block; }
+
+  /* Modal Content */
+  .steps-list { display:flex; flex-direction:column; gap:16px; }
+  .step-item  { display:flex; gap:16px; }
+  .step-num   { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; line-height:1; flex-shrink:0; min-width:30px; }
+  .step-head  { font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--cream); margin-bottom:4px; font-weight:500; }
+  .step-body  { font-size:13px; color:var(--muted); line-height:1.65; }
+  .m-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+  .m-info-card { background:var(--bg2); border:1px solid rgba(201,149,106,0.08); padding:20px; }
+  .mic-lbl { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  .mic-val { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--cream); line-height:1.5; }
+  .a-tags  { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px; }
+  .a-tag   { padding:6px 14px; border:1px solid; font-size:11px; letter-spacing:0.5px; }
+  .a-good  { border-color:rgba(122,158,126,0.4); color:var(--sage-lt); background:rgba(122,158,126,0.06); }
+  .a-avoid { border-color:rgba(201,80,80,0.3); color:#e07070; background:rgba(201,80,80,0.04); }
+  .time-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+  .t-card { background:var(--bg2); border:1px solid rgba(201,149,106,0.08); padding:18px 14px; text-align:center; }
+  .t-card.rec { border-color:rgba(201,149,106,0.3); background:rgba(201,149,106,0.05); }
+  .t-icon { font-size:22px; margin-bottom:7px; }
+  .t-lbl  { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .t-val  { font-family:'Cormorant Garamond',serif; font-size:14px; color:var(--cream); }
+  .h-div  { height:1px; background:rgba(201,149,106,0.1); margin:20px 0; }
+  .m-sec-head { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--cream); margin-bottom:14px; }
+  .m-warn { background:rgba(201,80,80,0.05); border:1px solid rgba(201,80,80,0.2); padding:14px 18px; margin-bottom:12px; display:flex; gap:12px; }
+  .m-warn-icon { font-size:16px; flex-shrink:0; margin-top:2px; }
+  .m-warn-text { font-size:13px; color:#e07070; line-height:1.6; }
+  .m-warn-text strong { color:#f08080; }
+  .m-tip { background:rgba(122,158,126,0.05); border:1px solid rgba(122,158,126,0.2); padding:14px 18px; margin-bottom:12px; display:flex; gap:12px; }
+  .m-tip-text { font-size:13px; color:var(--sage-lt); line-height:1.6; }
+  .m-tip-text strong { color:#c4e0c8; }
+  .m-list { display:flex; flex-direction:column; gap:8px; }
+  .m-list-item { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--muted); line-height:1.5; }
+  .m-list-dot { width:4px; height:4px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding:50px 52px; border-top:1px solid rgba(201,149,106,0.1);
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:22px;
+  }
+  .f-logo { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--gold-lt); letter-spacing:4px; text-transform:uppercase; margin-bottom:3px; }
+  .f-sub  { font-size:11px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; }
+  .f-links { display:flex; gap:26px; list-style:none; }
+  .f-links a { color:var(--muted); text-decoration:none; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; transition:color 0.3s; }
+  .f-links a:hover { color:var(--gold-lt); }
+  .copyright { background:var(--bg2); padding:14px 52px; text-align:center; font-size:11px; color:var(--muted); border-top:1px solid rgba(201,149,106,0.06); }
+  .copyright strong { color:var(--gold-lt); font-weight:500; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.show { opacity:1; transform:translateY(0); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width:4px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:rgba(201,149,106,0.3); border-radius:2px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width:1024px) {
+    nav { padding:18px 20px; }
+    .nav-links { display:none; }
+    .hero { padding:120px 20px 60px; }
+    .hero-split { grid-template-columns:1fr; }
+    .hero-img { display:none; }
+    .section { padding:60px 20px; }
+    .products-grid { grid-template-columns:repeat(2,1fr); }
+    .featured-grid { grid-template-columns:1fr; gap:36px; }
+    .showcase-row { grid-template-columns:1fr; }
+    .showcase-row:nth-child(even) .sc-img,
+    .showcase-row:nth-child(even) .sc-content { order:unset; }
+    .guide-panel.active { grid-template-columns:1fr; }
+    .routine-grid { grid-template-columns:1fr; }
+    .compat-grid { grid-template-columns:1fr; }
+    .modal-body { padding:20px 20px 36px; }
+    .modal-banner-info { left:20px; right:50px; }
+    .modal-price-bar, .modal-tabs { padding-left:20px; padding-right:20px; }
+    footer { padding:36px 20px; flex-direction:column; text-align:center; }
+    .f-links { justify-content:center; }
+    .copyright { padding:12px 20px; }
+  }
+  @media (max-width:600px) {
+    .products-grid { grid-template-columns:1fr; }
+    .concern-grid { grid-template-columns:repeat(2,1fr); }
+    .time-grid { grid-template-columns:1fr; }
+    .m-info-grid { grid-template-columns:1fr; }
+    .hero-stats { gap:24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="nav-logo">Aura <em>Skin</em></a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#guide">How to Use</a></li>
+    <li><a href="#routine">Routine</a></li>
+    <li><a href="#finder">Skin Finder</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-split">
+    <div>
+      <div class="hero-eyebrow">Aura Skincare · Interactive Guide</div>
+      <h1 class="hero-title">Your Skin,<br><em>Transformed.</em></h1>
+      <p class="hero-tagline">Clean Science. Real Results.</p>
+      <p class="hero-desc">
+        Tap any serum below to discover exactly how to use it,
+        who it is for, when to apply it and what to watch out for.
+      </p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-gold">Shop the Collection</a>
+        <a href="#guide"    class="btn-ghost">How to Use →</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="h-stat-num">4</div><div class="h-stat-lbl">Serums</div></div>
+        <div><div class="h-stat-num">30ml</div><div class="h-stat-lbl">Each Bottle</div></div>
+        <div><div class="h-stat-num">100%</div><div class="h-stat-lbl">Clean Formula</div></div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <div class="hero-img-glow"></div>
+      <img src="IMG_20260325_083638.png" alt="Aura Serum Collection by Dhiya Johnson">
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="section section-dark" id="products">
+  <div class="sec-head reveal">
+    <span class="sec-tag">The Collection</span>
+    <h2 class="sec-title">Aura <em>Serums</em></h2>
+    <p class="sec-desc">Four powerful actives — each crafted for a specific skin concern. Tap any product to learn more.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card reveal" data-p="vitc" onclick="openModal('vitc')">
+      <div class="product-img">
+        <img src="IMG_20260325_083507.png" alt="Aura Vitamin C Serum">
+        <div class="product-img-fade"></div>
+      </div>
+      <div class="product-body">
+        <div class="p-num">01 / 04</div>
+        <div class="p-name">Vitamin C</div>
+        <div class="p-conc">15% Stabilized</div>
+        <p class="p-desc">Brightens skin tone, fades dark spots and shields against daily environmental damage.</p>
+        <div class="p-bottom">
+          <div><div class="p-price">₹ 599</div><div class="p-size">30ml · Serum</div></div>
+          <button class="p-btn">View Guide</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-p="niac" onclick="openModal('niac')">
+      <div class="product-img">
+        <img src="IMG_20260325_083406.png" alt="Aura Niacinamide Serum">
+        <div class="product-img-fade"></div>
+      </div>
+      <div class="product-body">
+        <div class="p-num">02 / 04</div>
+        <div class="p-name">Niacinamide</div>
+        <div class="p-conc">10% Solution</div>
+        <p class="p-desc">Minimizes pores, controls excess oil and strengthens the skin barrier.</p>
+        <div class="p-bottom">
+          <div><div class="p-price">₹ 549</div><div class="p-size">30ml · Serum</div></div>
+          <button class="p-btn">View Guide</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-p="salic" onclick="openModal('salic')">
+      <div class="product-img">
+        <img src="IMG_20260325_083438.png" alt="Aura Salicylic Acid Serum">
+        <div class="product-img-fade"></div>
+      </div>
+      <div class="product-body">
+        <div class="p-num">03 / 04</div>
+        <div class="p-name">Salicylic Acid</div>
+        <div class="p-conc">2% Solution</div>
+        <p class="p-desc">Penetrates deep into pores, dissolves sebum and prevents breakouts before they form.</p>
+        <div class="p-bottom">
+          <div><div class="p-price">₹ 499</div><div class="p-size">30ml · Serum</div></div>
+          <button class="p-btn">View Guide</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-p="retinol" onclick="openModal('retinol')">
+      <div class="product-img">
+        <img src="IMG_20260325_083526.png" alt="Aura Retinol Serum">
+        <div class="product-img-fade"></div>
+      </div>
+      <div class="product-body">
+        <div class="p-num">04 / 04</div>
+        <div class="p-name">Retinol</div>
+        <div class="p-conc">10% Complex</div>
+        <p class="p-desc">Accelerates cell renewal, smooths fine lines and firms skin texture overnight.</p>
+        <div class="p-bottom">
+          <div><div class="p-price">₹ 699</div><div class="p-size">30ml · Serum</div></div>
+          <button class="p-btn">View Guide</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Featured — Vitamin C -->
+<section class="section" id="featured">
+  <div class="featured-grid reveal">
+    <div class="feat-img">
+      <div class="feat-img-glow"></div>
+      <img src="IMG_20260325_083507.png" alt="Aura Vitamin C Serum — Best Seller">
+    </div>
+    <div>
+      <div class="feat-tag">Best Seller</div>
+      <div class="feat-title">Vitamin C</div>
+      <div class="feat-conc">15% Stabilized L-Ascorbic Acid</div>
+      <p class="feat-desc">
+        Our most loved serum. A potent antioxidant that visibly brightens dull skin,
+        fades dark spots and protects against daily environmental stressors.
+        Formulated with stabilized Vitamin C for maximum efficacy and a longer shelf life.
+      </p>
+      <div class="feat-perks">
+        <div class="feat-perk"><div class="feat-dot"></div>Visibly brightens skin tone in 2 to 4 weeks</div>
+        <div class="feat-perk"><div class="feat-dot"></div>Fades post-acne marks and dark spots</div>
+        <div class="feat-perk"><div class="feat-dot"></div>Shields skin from UV-induced free radical damage</div>
+        <div class="feat-perk"><div class="feat-dot"></div>Boosts natural collagen production</div>
+      </div>
+      <div class="feat-price-row">
+        <div class="feat-price">₹ 599</div>
+        <div class="feat-size">30ml · Serum</div>
+      </div>
+      <button class="btn-gold" onclick="openModal('vitc')">Full Product Guide →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Showcase — Niacinamide, Salicylic Acid, Retinol -->
+<div class="showcase">
+
+  <div class="showcase-row reveal" data-sc="niac">
+    <div class="sc-img"><img src="IMG_20260325_083406.png" alt="Aura Niacinamide Serum"></div>
+    <div class="sc-content">
+      <div class="sc-big-num">02</div>
+      <div class="sc-badge">Barrier · Pores · Oil Control</div>
+      <div class="sc-name">Niacinamide</div>
+      <div class="sc-conc">10% Vitamin B3 Solution</div>
+      <p class="sc-desc">
+        The ultimate multitasker. Tackles pores, shine, redness and barrier damage
+        all at once — perfect for oily, acne-prone or sensitive skin.
+      </p>
+      <div class="sc-perks">
+        <div class="sc-perk"><div class="sc-dot"></div>Visibly minimizes enlarged pores</div>
+        <div class="sc-perk"><div class="sc-dot"></div>Regulates sebum production</div>
+        <div class="sc-perk"><div class="sc-dot"></div>Calms redness and uneven tone</div>
+      </div>
+      <div class="sc-price-row">
+        <div class="sc-price">₹ 549</div>
+        <div class="sc-size">30ml</div>
+      </div>
+      <button class="sc-btn" onclick="openModal('niac')">View Full Guide <span>→</span></button>
+    </div>
+  </div>
+
+  <div class="showcase-row reveal" data-sc="salic">
+    <div class="sc-img"><img src="IMG_20260325_083438.png" alt="Aura Salicylic Acid Serum"></div>
+    <div class="sc-content">
+      <div class="sc-big-num">03</div>
+      <div class="sc-badge">Acne · Pores · Exfoliation</div>
+      <div class="sc-name">Salicylic Acid</div>
+      <div class="sc-conc">2% Beta Hydroxy Acid</div>
+      <p class="sc-desc">
+        An oil-soluble BHA that penetrates deep into pores to dissolve sebum
+        and prevent breakouts. Gentle enough for regular use — effective enough for real results.
+      </p>
+      <div class="sc-perks">
+        <div class="sc-perk"><div class="sc-dot"></div>Prevents breakouts before they form</div>
+        <div class="sc-perk"><div class="sc-dot"></div>Dissolves blackheads and congestion</div>
+        <div class="sc-perk"><div class="sc-dot"></div>Gentle chemical exfoliation</div>
+      </div>
+      <div class="sc-price-row">
+        <div class="sc-price">₹ 499</div>
+        <div class="sc-size">30ml</div>
+      </div>
+      <button class="sc-btn" onclick="openModal('salic')">View Full Guide <span>→</span></button>
+    </div>
+  </div>
+
+  <div class="showcase-row reveal" data-sc="retinol">
+    <div class="sc-img"><img src="IMG_20260325_083526.png" alt="Aura Retinol Serum"></div>
+    <div class="sc-content">
+      <div class="sc-big-num">04</div>
+      <div class="sc-badge">Anti-Aging · Texture · Firming</div>
+      <div class="sc-name">Retinol</div>
+      <div class="sc-conc">Modern Skincare Essence · 10% Complex</div>
+      <p class="sc-desc">
+        The gold-standard anti-aging ingredient. Accelerates cell turnover,
+        stimulates collagen and transforms skin texture — delivering results
+        you can see and feel.
+      </p>
+      <div class="sc-perks">
+        <div class="sc-perk"><div class="sc-dot"></div>Smooths fine lines and wrinkles</div>
+        <div class="sc-perk"><div class="sc-dot"></div>Accelerates skin cell renewal</div>
+        <div class="sc-perk"><div class="sc-dot"></div>Firms and resurfaces texture</div>
+      </div>
+      <div class="sc-price-row">
+        <div class="sc-price">₹ 699</div>
+        <div class="sc-size">30ml</div>
+      </div>
+      <button class="sc-btn" onclick="openModal('retinol')">View Full Guide <span>→</span></button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Guide Tabs -->
+<section class="section section-dark" id="guide">
+  <div class="sec-head reveal">
+    <span class="sec-tag">Product Education</span>
+    <h2 class="sec-title">How to Use <em>Each Serum</em></h2>
+    <p class="sec-desc">Select a serum to learn exactly how to apply it, who it is for and when to use it.</p>
+  </div>
+  <div class="guide-tabs">
+    <button class="g-tab active" onclick="switchGuide('vitc',this)">Vitamin C</button>
+    <button class="g-tab" onclick="switchGuide('niac',this)">Niacinamide</button>
+    <button class="g-tab" onclick="switchGuide('retinol',this)">Retinol</button>
+    <button class="g-tab" onclick="switchGuide('salic',this)">Salicylic Acid</button>
+  </div>
+
+  <!-- Vitamin C Guide -->
+  <div class="guide-panel active" id="gp-vitc">
+    <div class="g-card">
+      <div class="g-card-lbl">How to Apply</div>
+      <div class="g-card-head">Application Steps</div>
+      <div class="g-list">
+        <div class="g-item"><div class="g-dot" style="background:var(--vitc)"></div>Cleanse and pat skin dry gently</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--vitc)"></div>Dispense 3 to 5 drops onto fingertips</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--vitc)"></div>Press gently into face and neck — do not rub</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--vitc)"></div>Wait 60 seconds for full absorption</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--vitc)"></div>Follow with moisturizer then SPF 30+ (always!)</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">Who It Is For</div>
+      <div class="g-card-head">Best For</div>
+      <div class="g-card-body">Dull skin, dark spots, hyperpigmentation, all skin types. Start 2 to 3 times per week if you are new to Vitamin C.
+        <div class="g-tip">✅ Use every morning before SPF for best results.</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">When to Use</div>
+      <div class="g-card-head">Morning Only ☀️</div>
+      <div class="g-card-body">Always apply in the morning. Vitamin C acts as an antioxidant shield all day — it works best alongside SPF.
+        <div class="g-warn">⚠️ Never skip SPF — Vitamin C increases UV sensitivity.</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">Key Warnings</div>
+      <div class="g-card-head">Important Notes</div>
+      <div class="g-list">
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>SPF is absolutely mandatory every morning</div>
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>Do not mix with Benzoyl Peroxide — it deactivates Vitamin C</div>
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>If serum turns deep brown it has oxidized — replace it</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--sage)"></div>Store in a cool, dark place — use within 3 months of opening</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Niacinamide Guide -->
+  <div class="guide-panel" id="gp-niac">
+    <div class="g-card">
+      <div class="g-card-lbl">How to Apply</div>
+      <div class="g-card-head">Application Steps</div>
+      <div class="g-list">
+        <div class="g-item"><div class="g-dot" style="background:var(--niac)"></div>Cleanse and pat dry</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--niac)"></div>Apply 3 to 4 drops as the first serum layer</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--niac)"></div>Press gently into skin — do not tug or drag</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--niac)"></div>Layer other serums or moisturizer on top</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">Who It Is For</div>
+      <div class="g-card-head">Best For</div>
+      <div class="g-card-body">Oily skin, acne-prone skin, large pores, redness, sensitive skin. The most universally suitable serum in the Aura range.
+        <div class="g-tip">✅ Ideal first serum for beginners. Visible results in 2 weeks.</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">When to Use</div>
+      <div class="g-card-head">Morning and Evening ☀️🌙</div>
+      <div class="g-card-body">Twice daily is ideal. Morning use controls shine. Evening use repairs the barrier while you sleep.
+        <div class="g-tip">✅ Apply before Retinol to reduce irritation — a dermatologist-approved technique.</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">Key Warnings</div>
+      <div class="g-card-head">Important Notes</div>
+      <div class="g-list">
+        <div class="g-item"><div class="g-dot" style="background:var(--sage)"></div>Safest active — suitable for almost all skin types</div>
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>Rarely causes flushing in ultra-sensitive skin — reduce to once daily if needed</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--sage)"></div>Always moisturize — even oily skin needs hydration</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Retinol Guide -->
+  <div class="guide-panel" id="gp-retinol">
+    <div class="g-card">
+      <div class="g-card-lbl">How to Apply</div>
+      <div class="g-card-head">Application Steps</div>
+      <div class="g-list">
+        <div class="g-item"><div class="g-dot" style="background:var(--retinol)"></div>Evening only — cleanse thoroughly first</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--retinol)"></div>Optional: apply Niacinamide first as a buffer</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--retinol)"></div>Apply 2 to 3 drops — avoid direct eye area initially</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--retinol)"></div>Wait 20 to 30 minutes before moisturizer</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--retinol)"></div>Apply a rich night moisturizer on top</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">Who It Is For</div>
+      <div class="g-card-head">Best For</div>
+      <div class="g-card-body">Fine lines, aging skin, uneven texture, sun damage. Ages 25 and above.
+        <div class="g-warn">🤰 Avoid if pregnant or breastfeeding.</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">When to Use</div>
+      <div class="g-card-head">Evening Only 🌙</div>
+      <div class="g-card-body">Never use in the morning — Retinol degrades in sunlight and increases UV sensitivity significantly.
+        <div class="g-tip">📅 Start once per week → build to 2 to 3 times per week over 4 to 6 weeks.</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">Key Warnings</div>
+      <div class="g-card-head">Important Notes</div>
+      <div class="g-list">
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>Mandatory SPF every morning during Retinol use</div>
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>Peeling in the first 4 to 6 weeks is completely normal</div>
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>Do not use alongside AHAs, BHAs or Vitamin C on the same night</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--sage)"></div>Results: texture in 6 to 8 weeks, fine lines in 3 to 6 months</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Salicylic Acid Guide -->
+  <div class="guide-panel" id="gp-salic">
+    <div class="g-card">
+      <div class="g-card-lbl">How to Apply</div>
+      <div class="g-card-head">Application Steps</div>
+      <div class="g-list">
+        <div class="g-item"><div class="g-dot" style="background:var(--salic)"></div>Cleanse thoroughly — remove all makeup first</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--salic)"></div>Apply 2 to 4 drops on T-zone, chin and nose</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--salic)"></div>Leave on — do not rinse off</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--salic)"></div>Follow with Niacinamide to soothe</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--salic)"></div>Finish with moisturizer — never skip this step</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">Who It Is For</div>
+      <div class="g-card-head">Best For</div>
+      <div class="g-card-body">Acne-prone skin, oily skin, blackheads, clogged pores, combination skin.
+        <div class="g-warn">🤰 Avoid during pregnancy — consult your doctor before use.</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">When to Use</div>
+      <div class="g-card-head">Evening Preferred 🌙</div>
+      <div class="g-card-body">Use 2 to 3 times per week in the evening. If using in the morning, SPF is mandatory.
+        <div class="g-tip">📅 Alternate with Retinol — never use both on the same evening.</div>
+      </div>
+    </div>
+    <div class="g-card">
+      <div class="g-card-lbl">Key Warnings</div>
+      <div class="g-card-head">Important Notes</div>
+      <div class="g-list">
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>Never use daily — 2 to 3 times per week maximum</div>
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>Initial purging in the first 4 weeks is normal — the serum is working</div>
+        <div class="g-item"><div class="g-dot" style="background:#e07070"></div>Always use SPF the morning after use</div>
+        <div class="g-item"><div class="g-dot" style="background:var(--sage)"></div>Pairs beautifully with Niacinamide for a soothing effect</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Routine -->
+<section class="section" id="routine">
+  <div class="sec-head reveal">
+    <span class="sec-tag">Daily Ritual</span>
+    <h2 class="sec-title">Your Aura <em>Routine</em></h2>
+    <p class="sec-desc">Layer your Aura serums in the correct order for maximum results and zero irritation.</p>
+  </div>
+  <div class="routine-grid">
+    <div class="reveal">
+      <div class="r-time">☀️ Morning Routine</div>
+      <div class="r-steps">
+        <div class="r-step"><div class="r-num">1</div><div class="r-name">Gentle Cleanser</div></div>
+        <div class="r-step"><div class="r-num">2</div><div class="r-name">Niacinamide Serum</div><span class="r-badge b-niac">Aura</span></div>
+        <div class="r-step"><div class="r-num">3</div><div class="r-name">Vitamin C Serum</div><span class="r-badge b-vitc">Aura</span></div>
+        <div class="r-step"><div class="r-num">4</div><div class="r-name">Moisturizer</div></div>
+        <div class="r-step"><div class="r-num">5</div><div class="r-name">SPF 30 to 50+ (Always!)</div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="r-time">🌙 Evening Routine</div>
+      <div class="r-steps">
+        <div class="r-step"><div class="r-num">1</div><div class="r-name">Double Cleanse</div></div>
+        <div class="r-step"><div class="r-num">2</div><div class="r-name">Salicylic Acid (2 to 3 times per week)</div><span class="r-badge b-salic">Aura</span></div>
+        <div class="r-step"><div class="r-num">3</div><div class="r-name">Niacinamide Serum</div><span class="r-badge b-niac">Aura</span></div>
+        <div class="r-step"><div class="r-num">4</div><div class="r-name">Retinol (2 to 3 times per week)</div><span class="r-badge b-retinol">Aura</span></div>
+        <div class="r-step"><div class="r-num">5</div><div class="r-name">Rich Night Moisturizer</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Compatibility -->
+<section class="section section-dark">
+  <div class="sec-head reveal">
+    <span class="sec-tag">Layering Guide</span>
+    <h2 class="sec-title">What <em>Works Together</em></h2>
+    <p class="sec-desc">Smart combinations unlock results. Knowing what to avoid prevents setbacks.</p>
+  </div>
+  <div class="compat-grid">
+    <div class="compat-card reveal">
+      <div class="compat-head"><div class="compat-dot dot-green"></div>Safe to Layer Together</div>
+      <div class="compat-tags">
+        <span class="compat-tag">Niacinamide + Salicylic Acid</span>
+        <span class="compat-tag">Vitamin C + Niacinamide</span>
+        <span class="compat-tag">Retinol + Niacinamide</span>
+        <span class="compat-tag">Salicylic + Retinol (alternate nights)</span>
+      </div>
+    </div>
+    <div class="compat-card reveal">
+      <div class="compat-head"><div class="compat-dot dot-yellow"></div>Use With Caution</div>
+      <div class="compat-tags">
+        <span class="compat-tag">Vitamin C + AHA / BHA (same time)</span>
+        <span class="compat-tag">Retinol + Direct acids</span>
+        <span class="compat-tag">Multiple actives at once (beginners)</span>
+      </div>
+    </div>
+    <div class="compat-card reveal">
+      <div class="compat-head"><div class="compat-dot dot-red"></div>Avoid Together</div>
+      <div class="compat-tags">
+        <span class="compat-tag">Retinol + Vitamin C (same session)</span>
+        <span class="compat-tag">Salicylic + Retinol (same night)</span>
+        <span class="compat-tag">Vitamin C + Benzoyl Peroxide</span>
+      </div>
+    </div>
+    <div class="compat-card reveal">
+      <div class="compat-head"><div class="compat-dot dot-green"></div>Best Pairings</div>
+      <div class="compat-tags">
+        <span class="compat-tag">Retinol + Peptides</span>
+        <span class="compat-tag">Niacinamide + Hyaluronic Acid</span>
+        <span class="compat-tag">Vitamin C + Vitamin E + Ferulic Acid</span>
+        <span class="compat-tag">Salicylic Acid + Zinc</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skin Concern Finder -->
+<section class="section" id="finder">
+  <div class="sec-head reveal">
+    <span class="sec-tag">Personalised</span>
+    <h2 class="sec-title">Find Your <em>Match</em></h2>
+    <p class="sec-desc">Select your main skin concern — we will show you exactly which Aura serum is made for you.</p>
+  </div>
+  <div class="concern-grid">
+    <button class="c-btn" onclick="findMatch('dark-spots',this)"><span class="c-icon">🌑</span>Dark Spots</button>
+    <button class="c-btn" onclick="findMatch('acne',this)"><span class="c-icon">🔴</span>Acne and Breakouts</button>
+    <button class="c-btn" onclick="findMatch('aging',this)"><span class="c-icon">⏳</span>Fine Lines and Aging</button>
+    <button class="c-btn" onclick="findMatch('pores',this)"><span class="c-icon">🔍</span>Large Pores</button>
+    <button class="c-btn" onclick="findMatch('dullness',this)"><span class="c-icon">💫</span>Dullness and Glow</button>
+    <button class="c-btn" onclick="findMatch('oily',this)"><span class="c-icon">💧</span>Oily and Combination Skin</button>
+  </div>
+  <div class="finder-result" id="finderResult">
+    <div class="fr-title"  id="frTitle">Select a concern above to get your recommendation</div>
+    <div class="fr-serums" id="frSerums"></div>
+    <div class="fr-tip"    id="frTip"></div>
+  </div>
+</section>
+
+<!-- Founder Story -->
+<section class="story-section section">
+  <div class="story-glow"></div>
+  <div class="story-inner reveal">
+    <span class="quote-sym">"</span>
+    <p class="quote-text">
+      Skincare should not be confusing. I built Aura so that
+      <em>everyone</em> can understand what they are putting on their skin
+      — and actually see the results.
+    </p>
+    <div class="sig-bar"></div>
+    <div class="sig-name">Dhiya Johnson</div>
+    <div class="sig-role">Founder, Aura™ Skincare</div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div>
+    <div class="f-logo">Aura</div>
+    <div class="f-sub">Clean Science. Real Results.</div>
+  </div>
+  <ul class="f-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#guide">How to Use</a></li>
+    <li><a href="#routine">Routine</a></li>
+    <li><a href="#finder">Skin Finder</a></li>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</footer>
+<div class="copyright">
+  &copy; 2025 <strong>Dhiya Johnson</strong>. All rights reserved.
+  Aura&trade; is a trademark of Dhiya Johnson. Unauthorized reproduction is strictly prohibited.
+</div>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOut(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-banner">
+      <img id="m-img" src="" alt="">
+      <div class="modal-banner-fade"></div>
+      <div class="modal-banner-info">
+        <div class="m-eyebrow" id="m-eyebrow"></div>
+        <div class="m-title"   id="m-title"></div>
+        <div class="m-conc"    id="m-conc"></div>
+      </div>
+    </div>
+    <div class="modal-price-bar">
+      <div class="m-price" id="m-price"></div>
+      <div class="m-size">30ml · Serum</div>
+      <div class="m-avail"><div class="avail-dot"></div>Available Now</div>
+    </div>
+    <div class="modal-tabs">
+      <button class="m-tab active" onclick="mTab('how',this)">How to Use</button>
+      <button class="m-tab" onclick="mTab('who',this)">Who It Is For</button>
+      <button class="m-tab" onclick="mTab('when',this)">When to Use</button>
+      <button class="m-tab" onclick="mTab('imp',this)">⚠ Important</button>
+    </div>
+    <div class="modal-body">
+      <div class="m-panel active" id="mp-how"></div>
+      <div class="m-panel"        id="mp-who"></div>
+      <div class="m-panel"        id="mp-when"></div>
+      <div class="m-panel"        id="mp-imp"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CURSOR ──
+const cur  = document.getElementById('cursor');
+const curR = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function loop() {
+  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  curR.style.left = rx + 'px'; curR.style.top = ry + 'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('button, a, .product-card, .c-btn, .showcase-row').forEach(el => {
+  el.addEventListener('mouseenter', () => curR.classList.add('active'));
+  el.addEventListener('mouseleave', () => curR.classList.remove('active'));
+});
+
+// ── PARTICLES ──
+const pw = document.getElementById('particles');
+for (let i = 0; i < 18; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.cssText = `left:${Math.random()*100}%;animation-duration:${14+Math.random()*18}s;animation-delay:${Math.random()*18}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px`;
+  pw.appendChild(p);
+}
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── GUIDE TABS ──
+function switchGuide(id, btn) {
+  document.querySelectorAll('.g-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.guide-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('gp-' + id).classList.add('active');
+}
+
+// ── MODAL DATA ──
+const serums = {
+  vitc: {
+    name:'Vitamin C', eyebrow:'Brightening Antioxidant',
+    conc:'15% Stabilized L-Ascorbic Acid',
+    color:'#e8934a', price:'₹ 599', img:'IMG_20260325_083507.png',
+    how:`<p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px">Apply 3 to 5 drops every morning after cleansing. Always follow with SPF 30+.</p>
+    <div class="steps-list">
+      <div class="step-item"><div class="step-num" style="color:#e8934a">1</div><div><div class="step-head">Cleanse</div><div class="step-body">Use a gentle pH-balanced cleanser. Pat dry — never rub.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#e8934a">2</div><div><div class="step-head">Apply Vitamin C</div><div class="step-body">3 to 5 drops pressed gently into face and neck. Do not rub.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#e8934a">3</div><div><div class="step-head">Wait 60 Seconds</div><div class="step-body">Allow full absorption before the next step.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#e8934a">4</div><div><div class="step-head">Moisturize and SPF</div><div class="step-body">Moisturizer then SPF 30+ minimum — non-negotiable every morning.</div></div></div>
+    </div>`,
+    who:`<h3 class="m-sec-head">Perfect For</h3>
+    <div class="a-tags">
+      <span class="a-tag a-good">Dull or Uneven Skin</span>
+      <span class="a-tag a-good">Dark Spots</span>
+      <span class="a-tag a-good">Post-Acne Marks</span>
+      <span class="a-tag a-good">All Skin Types</span>
+      <span class="a-tag a-good">Sun-Damaged Skin</span>
+    </div>
+    <div class="h-div"></div>
+    <h3 class="m-sec-head">Use With Care If...</h3>
+    <div class="a-tags">
+      <span class="a-tag a-avoid">Very Sensitive Skin</span>
+      <span class="a-tag a-avoid">Active Rosacea</span>
+    </div>
+    <div class="h-div"></div>
+    <div class="m-info-grid">
+      <div class="m-info-card"><div class="mic-lbl">Skin Types</div><div class="mic-val">Normal, dry, oily and combination skin.</div></div>
+      <div class="m-info-card"><div class="mic-lbl">Age Range</div><div class="mic-val">All ages. Most effective from mid-20s onwards.</div></div>
+    </div>`,
+    when:`<div class="time-grid">
+      <div class="t-card rec"><div class="t-icon">☀️</div><div class="t-lbl">Recommended</div><div class="t-val">Morning</div></div>
+      <div class="t-card"><div class="t-icon">🌙</div><div class="t-lbl">Evening</div><div class="t-val">Possible but less ideal</div></div>
+      <div class="t-card"><div class="t-icon">📅</div><div class="t-lbl">Frequency</div><div class="t-val">Daily</div></div>
+    </div>
+    <div class="m-tip"><div>💡</div><div class="m-tip-text"><strong>Why morning?</strong> Acts as an antioxidant shield all day — works best alongside SPF.</div></div>
+    <div class="m-tip"><div>🔰</div><div class="m-tip-text"><strong>Beginners:</strong> Start 2 to 3 times per week, build to daily over 4 to 6 weeks.</div></div>`,
+    imp:`<div class="m-warn"><div class="m-warn-icon">⚠️</div><div class="m-warn-text"><strong>Always use SPF.</strong> Vitamin C increases photosensitivity — without SPF you risk more damage than protection.</div></div>
+    <div class="m-warn"><div class="m-warn-icon">🚫</div><div class="m-warn-text"><strong>Avoid with Benzoyl Peroxide</strong> — it oxidizes and completely deactivates the Vitamin C.</div></div>
+    <div class="m-warn"><div class="m-warn-icon">🔶</div><div class="m-warn-text"><strong>Oxidation:</strong> If your serum turns deep yellow or brown it has lost all potency — replace it.</div></div>
+    <div class="m-tip"><div>✅</div><div class="m-tip-text"><strong>Storage:</strong> Cool, dark place. Use within 3 months of opening for best results.</div></div>`
+  },
+  niac: {
+    name:'Niacinamide', eyebrow:'Barrier Perfecting Complex',
+    conc:'10% Vitamin B3 Solution',
+    color:'#c9956a', price:'₹ 549', img:'IMG_20260325_083406.png',
+    how:`<p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px">The most versatile serum. Apply morning and evening as the first serum layer before other actives.</p>
+    <div class="steps-list">
+      <div class="step-item"><div class="step-num" style="color:#c9956a">1</div><div><div class="step-head">Cleanse</div><div class="step-body">Use a gentle cleanser suited to your skin type. Pat dry.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#c9956a">2</div><div><div class="step-head">Apply Niacinamide First</div><div class="step-body">3 to 4 drops before thicker serums or oils.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#c9956a">3</div><div><div class="step-head">Press Into Skin</div><div class="step-body">Use fingertips to press in gently. Do not tug or drag.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#c9956a">4</div><div><div class="step-head">Layer and Moisturize</div><div class="step-body">Follow with other serums or moisturizer directly.</div></div></div>
+    </div>`,
+    who:`<h3 class="m-sec-head">Perfect For</h3>
+    <div class="a-tags">
+      <span class="a-tag a-good">Oily and Combination Skin</span>
+      <span class="a-tag a-good">Acne-Prone Skin</span>
+      <span class="a-tag a-good">Sensitive Skin</span>
+      <span class="a-tag a-good">Enlarged Pores</span>
+      <span class="a-tag a-good">Redness</span>
+      <span class="a-tag a-good">All Ages</span>
+    </div>
+    <div class="h-div"></div>
+    <div class="m-info-grid">
+      <div class="m-info-card"><div class="mic-lbl">Best Feature</div><div class="mic-val">Safe for all skin types including sensitive and reactive skin.</div></div>
+      <div class="m-info-card"><div class="mic-lbl">Beginners?</div><div class="mic-val">Yes — ideal first serum. Visible results in about 2 weeks.</div></div>
+    </div>`,
+    when:`<div class="time-grid">
+      <div class="t-card rec"><div class="t-icon">☀️</div><div class="t-lbl">Morning</div><div class="t-val">Excellent</div></div>
+      <div class="t-card rec"><div class="t-icon">🌙</div><div class="t-lbl">Evening</div><div class="t-val">Excellent</div></div>
+      <div class="t-card"><div class="t-icon">📅</div><div class="t-lbl">Frequency</div><div class="t-val">Twice daily</div></div>
+    </div>
+    <div class="m-tip"><div>💡</div><div class="m-tip-text"><strong>Morning:</strong> Controls oil and shine throughout the day. <strong>Evening:</strong> Repairs barrier while you sleep.</div></div>`,
+    imp:`<div class="m-tip"><div>✅</div><div class="m-tip-text"><strong>Most compatible active.</strong> Works with almost everything and reduces irritation from Retinol and Vitamin C.</div></div>
+    <div class="m-warn"><div class="m-warn-icon">⚠️</div><div class="m-warn-text"><strong>Rare flushing:</strong> Very rarely causes temporary redness in ultra-sensitive skin at 10%. Reduce to once daily if this happens.</div></div>
+    <div class="m-tip"><div>✅</div><div class="m-tip-text"><strong>Retinol buffer:</strong> Apply Niacinamide before Retinol to reduce irritation — a technique recommended by dermatologists.</div></div>`
+  },
+  retinol: {
+    name:'Retinol', eyebrow:'Modern Skincare Essence',
+    conc:'10% Complex — Anti-Aging Serum',
+    color:'#b5785a', price:'₹ 699', img:'IMG_20260325_083526.png',
+    how:`<p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px">Evening only. Start once per week and build up gradually over several weeks.</p>
+    <div class="steps-list">
+      <div class="step-item"><div class="step-num" style="color:#b5785a">1</div><div><div class="step-head">Evening Cleanse</div><div class="step-body">Apply to clean, completely dry skin only.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#b5785a">2</div><div><div class="step-head">Optional Buffer</div><div class="step-body">Apply Niacinamide first and wait 5 minutes to reduce potential irritation.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#b5785a">3</div><div><div class="step-head">Apply Retinol</div><div class="step-body">2 to 3 drops across forehead, cheeks and chin. Avoid the eye area initially.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#b5785a">4</div><div><div class="step-head">Wait 20 to 30 Minutes</div><div class="step-body">Allow full absorption before applying moisturizer.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#b5785a">5</div><div><div class="step-head">Rich Moisturizer</div><div class="step-body">Use a nourishing barrier cream to minimize dryness.</div></div></div>
+    </div>`,
+    who:`<h3 class="m-sec-head">Recommended For</h3>
+    <div class="a-tags">
+      <span class="a-tag a-good">Fine Lines and Wrinkles</span>
+      <span class="a-tag a-good">Textured Skin</span>
+      <span class="a-tag a-good">Sun-Damaged Skin</span>
+      <span class="a-tag a-good">Ages 25 and Above</span>
+      <span class="a-tag a-good">Acne Scarring</span>
+    </div>
+    <div class="h-div"></div>
+    <h3 class="m-sec-head">Avoid If...</h3>
+    <div class="a-tags">
+      <span class="a-tag a-avoid">Pregnant or Breastfeeding</span>
+      <span class="a-tag a-avoid">Active Eczema</span>
+      <span class="a-tag a-avoid">Very Sensitive Skin</span>
+    </div>`,
+    when:`<div class="time-grid">
+      <div class="t-card"><div class="t-icon">☀️</div><div class="t-lbl">Morning</div><div class="t-val">Never — it breaks down in sunlight</div></div>
+      <div class="t-card rec"><div class="t-icon">🌙</div><div class="t-lbl">Evening Only</div><div class="t-val">Always</div></div>
+      <div class="t-card"><div class="t-icon">📅</div><div class="t-lbl">Frequency</div><div class="t-val">Start 1× per week</div></div>
+    </div>
+    <div class="m-warn"><div class="m-warn-icon">☀️</div><div class="m-warn-text"><strong>Never in the morning.</strong> Retinol degrades in UV light and dramatically increases photosensitivity.</div></div>
+    <div class="m-tip"><div>📅</div><div class="m-tip-text"><strong>Build up:</strong> Week 1 to 2 — once per week. Week 3 to 4 — twice per week. Month 2 onwards — every other night. Month 3 onwards — nightly if tolerated.</div></div>`,
+    imp:`<div class="m-warn"><div class="m-warn-icon">🤰</div><div class="m-warn-text"><strong>Pregnancy and Breastfeeding: AVOID.</strong> Use Bakuchiol as a safe plant-based alternative.</div></div>
+    <div class="m-warn"><div class="m-warn-icon">☀️</div><div class="m-warn-text"><strong>Mandatory SPF every morning</strong> during Retinol use — no exceptions whatsoever.</div></div>
+    <div class="m-warn"><div class="m-warn-icon">⚠️</div><div class="m-warn-text"><strong>Retinization period:</strong> Peeling and dryness in the first 4 to 6 weeks is completely normal. Reduce frequency — do not stop entirely.</div></div>
+    <div class="m-tip"><div>✅</div><div class="m-tip-text"><strong>Results timeline:</strong> Texture improvement in 6 to 8 weeks. Fine line softening in 3 to 6 months of consistent use.</div></div>`
+  },
+  salic: {
+    name:'Salicylic Acid', eyebrow:'Pore-Clearing BHA',
+    conc:'2% Beta Hydroxy Acid Solution',
+    color:'#7a9e7e', price:'₹ 499', img:'IMG_20260325_083438.png',
+    how:`<p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px">A leave-on exfoliant. Apply 2 to 3 evenings per week to acne-prone areas after cleansing.</p>
+    <div class="steps-list">
+      <div class="step-item"><div class="step-num" style="color:#7a9e7e">1</div><div><div class="step-head">Cleanse Thoroughly</div><div class="step-body">Remove all makeup and SPF before applying.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#7a9e7e">2</div><div><div class="step-head">Apply to Problem Areas</div><div class="step-body">2 to 4 drops on T-zone, chin and nose. Can apply all over for general exfoliation.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#7a9e7e">3</div><div><div class="step-head">Leave On</div><div class="step-body">Do not rinse. Wait 2 to 3 minutes before next step.</div></div></div>
+      <div class="step-item"><div class="step-num" style="color:#7a9e7e">4</div><div><div class="step-head">Niacinamide and Moisturizer</div><div class="step-body">Soothe with Niacinamide then finish with moisturizer — never skip this step.</div></div></div>
+    </div>`,
+    who:`<h3 class="m-sec-head">Best For</h3>
+    <div class="a-tags">
+      <span class="a-tag a-good">Acne-Prone Skin</span>
+      <span class="a-tag a-good">Oily Skin</span>
+      <span class="a-tag a-good">Blackheads</span>
+      <span class="a-tag a-good">Clogged Pores</span>
+      <span class="a-tag a-good">Combination Skin</span>
+    </div>
+    <div class="h-div"></div>
+    <h3 class="m-sec-head">Avoid If...</h3>
+    <div class="a-tags">
+      <span class="a-tag a-avoid">Very Dry Skin</span>
+      <span class="a-tag a-avoid">Pregnant</span>
+      <span class="a-tag a-avoid">Aspirin Allergy</span>
+    </div>`,
+    when:`<div class="time-grid">
+      <div class="t-card"><div class="t-icon">☀️</div><div class="t-lbl">Morning</div><div class="t-val">OK — use SPF</div></div>
+      <div class="t-card rec"><div class="t-icon">🌙</div><div class="t-lbl">Evening</div><div class="t-val">Preferred</div></div>
+      <div class="t-card"><div class="t-icon">📅</div><div class="t-lbl">Frequency</div><div class="t-val">2 to 3× per week</div></div>
+    </div>
+    <div class="m-tip"><div>📅</div><div class="m-tip-text"><strong>Rotation tip:</strong> Salicylic Acid nights — skip Retinol. Retinol nights — skip Salicylic Acid. Alternate for best results.</div></div>`,
+    imp:`<div class="m-warn"><div class="m-warn-icon">🚫</div><div class="m-warn-text"><strong>Never use daily.</strong> Over-exfoliation strips the barrier and causes rebound breakouts. 2 to 3 times per week is the maximum.</div></div>
+    <div class="m-warn"><div class="m-warn-icon">⚠️</div><div class="m-warn-text"><strong>Purging in weeks 1 to 4 is normal.</strong> Existing congestion comes to the surface first — the serum is working.</div></div>
+    <div class="m-tip"><div>✅</div><div class="m-tip-text"><strong>Best duo:</strong> Salicylic Acid and Niacinamide — one of skincare's most powerful pairings. One clears, the other soothes.</div></div>
+    <div class="m-warn"><div class="m-warn-icon">🤰</div><div class="m-warn-text"><strong>Pregnancy:</strong> Consult your doctor before use.</div></div>`
+  }
+};
+
+// ── OPEN MODAL ──
+function openModal(type) {
+  const d = serums[type];
+  document.getElementById('m-img').src         = d.img;
+  document.getElementById('m-img').alt         = 'Aura ' + d.name + ' Serum';
+  document.getElementById('m-eyebrow').textContent = d.eyebrow;
+  document.getElementById('m-eyebrow').style.color = d.color;
+  document.getElementById('m-title').textContent   = d.name;
+  document.getElementById('m-conc').textContent    = d.conc;
+  document.getElementById('m-price').textContent   = d.price;
+  document.getElementById('mp-how').innerHTML  = d.how;
+  document.getElementById('mp-who').innerHTML  = d.who;
+  document.getElementById('mp-when').innerHTML = d.when;
+  document.getElementById('mp-imp').innerHTML  = d.imp;
+  // Reset tabs
+  document.querySelectorAll('.m-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.m-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.m-tab')[0].classList.add('active');
+  document.getElementById('mp-how').classList.add('active');
+  // Open
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal()  { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+function closeOut(e)   { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+function mTab(name, btn) {
+  document.querySelectorAll('.m-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.m-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('mp-' + name).classList.add('active');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── SKIN FINDER ──
+const concerns = {
+  'dark-spots': {
+    t:'For Dark Spots and Hyperpigmentation',
+    s:[{n:'Vitamin C',c:'var(--vitc)'},{n:'Niacinamide',c:'var(--niac)'}],
+    tip:'Vitamin C inhibits melanin production and fades existing spots. Niacinamide brightens and evens skin tone. Always use SPF — dark spots return much faster without sun protection.'
+  },
+  'acne': {
+    t:'For Acne and Breakouts',
+    s:[{n:'Salicylic Acid',c:'var(--salic)'},{n:'Niacinamide',c:'var(--niac)'}],
+    tip:'Salicylic Acid dissolves sebum inside pores before it becomes a breakout. Niacinamide reduces inflammation and regulates oil production. Use them on alternating evenings for clearest results.'
+  },
+  'aging': {
+    t:'For Fine Lines and Aging Skin',
+    s:[{n:'Retinol',c:'var(--retinol)'},{n:'Vitamin C',c:'var(--vitc)'},{n:'Niacinamide',c:'var(--niac)'}],
+    tip:'Retinol accelerates cell turnover and builds collagen. Vitamin C protects collagen from daily UV damage. Niacinamide improves elasticity and firmness. Use Retinol at night and Vitamin C every morning.'
+  },
+  'pores': {
+    t:'For Enlarged Pores',
+    s:[{n:'Niacinamide',c:'var(--niac)'},{n:'Salicylic Acid',c:'var(--salic)'}],
+    tip:'Niacinamide tightens the skin around pores making them appear smaller. Salicylic Acid keeps them clear of sebum so they do not stretch open. This duo gives the most noticeably refined skin texture.'
+  },
+  'dullness': {
+    t:'For Dullness and a Natural Glow',
+    s:[{n:'Vitamin C',c:'var(--vitc)'},{n:'Salicylic Acid',c:'var(--salic)'}],
+    tip:'Vitamin C is your daily glow booster — it reflects light and evens skin tone. Salicylic Acid removes the layer of dead skin cells that causes a dull appearance. Morning Vitamin C plus Salicylic Acid twice per week equals luminous skin.'
+  },
+  'oily': {
+    t:'For Oily and Combination Skin',
+    s:[{n:'Niacinamide',c:'var(--niac)'},{n:'Salicylic Acid',c:'var(--salic)'}],
+    tip:'Niacinamide regulates sebum production — visible shine reduction is often seen within 2 weeks. Salicylic Acid prevents the buildup that leads to clogged pores. Never skip your moisturizer — dehydrated oily skin overproduces even more sebum to compensate.'
+  }
+};
+
+function findMatch(key, btn) {
+  document.querySelectorAll('.c-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const d = concerns[key];
+  const r = document.getElementById('finderResult');
+  document.getElementById('frTitle').textContent = d.t;
+  document.getElementById('frSerums').innerHTML = d.s.map(s =>
+    `<span class="fr-serum" style="border-color:${s.c};color:${s.c}">${s.n}</span>`
+  ).join('');
+  document.getElementById('frTip').textContent = d.tip;
+  r.classList.remove('show');
+  setTimeout(() => r.classList.add('show'), 50);
+}
+</script>
+
+</body>
+</html>
